@@ -277,10 +277,10 @@
          *      'Hello, My Name Is Sharikul'
          */
 
-        Capitalize: function(word) {
-            if(F.isString(word)) {
+        Capitalize: function(string) {
+            if(F.isString(string)) {
                 var string = '',
-                    words = word.match(/\s/g) ? word.split(/\s+/g): word;
+                    words = string.match(/\s/g) ? string.split(/\s+/g): string;
 
                 if(F.isArray(words)) {
                     F.forEach(words, function(_word) {
