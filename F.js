@@ -369,51 +369,6 @@
         },
 
         /**
-         * Removes whitespace from the values of the array provided.
-         * @return array
-         */
-        
-        arrayTrim: function(array) {
-            if(F.isArray(array)) {
-                F.forEach(array, function(value, key) {
-                    array[key] = F.Trim(value);
-                });
-            }
-
-            return array; 
-        },
-
-        /**
-         * Removes whitespace at the beginning of an array value.
-         * @return array
-         */
-        
-        arrayLTrim: function(array) {
-            if(F.isArray(array)) {
-                F.forEach(array, function(value, key) {
-                    array[key] = F.lTrim(value);
-                });
-            }
-
-            return array;
-        },
-
-        /**
-         * Removes whitespace at the end of an array value.
-         * @return array
-         */
-        
-        arrayRTrim: function(array) {
-            if(F.isArray(array)) {
-                F.forEach(array, function(value, key) {
-                    array[key] = F.rTrim(value);
-                });
-            }
-
-            return array;
-        },
-
-        /**
          * Checks if the function exists in the scope provided, window by default.
          * @return bool
          *
@@ -646,6 +601,18 @@
 
     /**
      * A loop to generate various type helpers, prefixed with 'is'.
+     *
+     * Functions that will be created are:
+     *     isObject
+     *     isString
+     *     isNumber
+     *     isBoolean
+     *     isFunction
+     *     isNull
+     *     isArray
+     *     isUndefined
+     *
+     * @uses F.typeOf
      * @return boolean
      *
      * Usage:
@@ -680,6 +647,22 @@
 
     /**
      * A loop to generate functional sugar wrappers around various events prefixed with 'on'.
+     *
+     * Functions that will be created are:
+     *     onClick
+     *     onMouseDown
+     *     onMouseUp
+     *     onMouseUp
+     *     onMouseOver
+     *     onDblClick
+     *     onMouseMove
+     *     onKeyDown
+     *     onKeyPress
+     *     onKeyUp
+     *     onChange
+     *     onSelect
+     *     onChange
+     * 
      * @uses F.attachEvent
      * @return boolean
      *
@@ -700,6 +683,17 @@
 
     /**
      * A loop to generate various error handlers, prefixed with '_'.
+     *
+     * Functions that will be created are:
+     *     _SyntaxError
+     *     _TypeError
+     *     _ReferenceError
+     *     _URIError
+     *     _EvalError
+     *     _EvalError
+     *     _Error
+     *     _RangeError
+     *     
      * @uses F.Format, F.toArray
      *
      * Usage:
@@ -714,6 +708,33 @@
         if(!F.isFunction(F['_' + error])) {
             F['_' + error] = function(message) {
                 throw new window[error](F.Format(message, F.toArray(arguments).slice(1)));
+            }
+        }
+    });
+
+    /**
+     * A loop to generate trim functions to be used on arrays.
+     *
+     * Functions that will be created are:
+     *     arrayTrim
+     *     arrayRTrim
+     *     arrayLTrim
+     *
+     * @uses F.Trim, F.lTrim, F.rTrim
+     * @return array
+     */
+
+    F.forEach(['Trim', 'rTrim', 'lTrim'], function(fn) {
+        if(!F.isFunction(F['array' + F.upperCaseFirst(fn)])) {
+
+            F['array' + F.upperCaseFirst(fn)] = function(array) {
+                if(F.isArray(array)) {
+                    F.forEach(array, function(value, key) {
+                        array[key] = F[fn](value);
+                    });
+                }
+
+                return array;
             }
         }
     });
