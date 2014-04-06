@@ -1,3 +1,8 @@
+/**
+ * F.js JavaScript library. Authored in 2014 by Sharikul Islam.
+ * @author Sharikul Islam
+ */
+
 (function() {
 
     var F = {
@@ -197,7 +202,7 @@
         },
 
         /**
-         * Custom type checker. Differentiate's between array's and objects.
+         * Custom type checker. Differentiate's between arrays and objects.
          * @return string
          *
          * Usage:
