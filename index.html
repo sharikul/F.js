@@ -363,6 +363,257 @@
  <span class="nx">alert</span><span class="p">(</span><span class="s1">'You have clicked!'</span><span class="p">);</span>
 <span class="p">},</span> <span class="s1">'#button'</span><span class="p">);</span>
 </pre></div>
+
+<h3>
+<a name="typeof" class="anchor" href="#typeof"><span class="octicon octicon-link"></span></a><code>typeOf</code>
+</h3>
+
+<p>The <code>typeOf</code> function works exactly like <code>typeof</code>, except that it has added support to recognize arrays, nodelists, and so on.</p>
+
+<h4>
+<a name="implementation-8" class="anchor" href="#implementation-8"><span class="octicon octicon-link"></span></a><strong>Implementation</strong>:</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">typeOf</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
+</pre></div>
+
+<h4>
+<a name="source-8" class="anchor" href="#source-8"><span class="octicon octicon-link"></span></a><strong>Source</strong>:</h4>
+
+<p><a href="https://github.com/sharikul/F.js/blob/master/F.js#222">https://github.com/sharikul/F.js/blob/master/F.js#222</a></p>
+
+<h4>
+<a name="returns-8" class="anchor" href="#returns-8"><span class="octicon octicon-link"></span></a><strong>Returns</strong>:</h4>
+
+<p>String</p>
+
+<h4>
+<a name="predefined-values-8" class="anchor" href="#predefined-values-8"><span class="octicon octicon-link"></span></a><strong>Predefined values</strong>:</h4>
+
+<p>None</p>
+
+<h4>
+<a name="usage-8" class="anchor" href="#usage-8"><span class="octicon octicon-link"></span></a><strong>Usage</strong>:</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">Expose</span><span class="p">(</span><span class="s1">'typeOf'</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">typeOf</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span> <span class="p">);</span> <span class="c1">// Logs 'array'</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="k">typeof</span><span class="p">({})</span> <span class="p">);</span> <span class="c1">// Logs 'object'</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">'div'</span><span class="p">)</span> <span class="p">);</span> <span class="c1">// Logs 'nodelist' </span>
+</pre></div>
+
+<h3>
+<a name="store" class="anchor" href="#store"><span class="octicon octicon-link"></span></a><code>Store</code>
+</h3>
+
+<p>The <code>Store</code> function acts as a wrapper around the HTML 5 specific <code>localStorage</code> and <code>sessionStorage</code> functions.</p>
+
+<h4>
+<a name="implementation-9" class="anchor" href="#implementation-9"><span class="octicon octicon-link"></span></a><strong>Implementation</strong>:</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">Store</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">access</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+</pre></div>
+
+<h4>
+<a name="source-9" class="anchor" href="#source-9"><span class="octicon octicon-link"></span></a><strong>Source</strong>:</h4>
+
+<p><a href="https://github.com/sharikul/F.js/blob/master/F.js#238">https://github.com/sharikul/F.js/blob/master/F.js#238</a></p>
+
+<h4>
+<a name="returns-9" class="anchor" href="#returns-9"><span class="octicon octicon-link"></span></a><strong>Returns</strong>:</h4>
+
+<p>Mixed</p>
+
+<h4>
+<a name="predefined-values-9" class="anchor" href="#predefined-values-9"><span class="octicon octicon-link"></span></a><strong>Predefined values</strong>:</h4>
+
+<p>None</p>
+
+<h4>
+<a name="usage-9" class="anchor" href="#usage-9"><span class="octicon octicon-link"></span></a><strong>Usage</strong>:</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">Expose</span><span class="p">(</span><span class="s1">'Store'</span><span class="p">);</span>
+
+<span class="c1">// Set a value in the session storage. Works the same way for local storage.</span>
+<span class="nx">Store</span><span class="p">(</span><span class="s1">'session.set'</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">,</span> <span class="s1">'Sharikul'</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">Store</span><span class="p">(</span><span class="s1">'session.get'</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">)</span> <span class="p">);</span> <span class="c1">// Logs 'Sharikul'</span>
+</pre></div>
+
+<h3>
+<a name="uppercasefirst" class="anchor" href="#uppercasefirst"><span class="octicon octicon-link"></span></a><code>upperCaseFirst</code>:</h3>
+
+<p>This function does exactly what its titled: capitalize's the string supplied.</p>
+
+<h4>
+<a name="implementation-10" class="anchor" href="#implementation-10"><span class="octicon octicon-link"></span></a><strong>Implementation</strong>:</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">upperCaseFirst</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">word</span><span class="p">);</span>
+</pre></div>
+
+<h4>
+<a name="source-10" class="anchor" href="#source-10"><span class="octicon octicon-link"></span></a><strong>Source</strong>:</h4>
+
+<p><a href="https://github.com/sharikul/F.js/blob/master/F.js#261">https://github.com/sharikul/F.js/blob/master/F.js#261</a></p>
+
+<h4>
+<a name="returns-10" class="anchor" href="#returns-10"><span class="octicon octicon-link"></span></a><strong>Returns</strong>:</h4>
+
+<p>String or Boolean</p>
+
+<h4>
+<a name="predefined-values-10" class="anchor" href="#predefined-values-10"><span class="octicon octicon-link"></span></a><strong>Predefined values</strong>:</h4>
+
+<p>None</p>
+
+<h4>
+<a name="usage-10" class="anchor" href="#usage-10"><span class="octicon octicon-link"></span></a><strong>Usage</strong>:</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">Expose</span><span class="p">(</span><span class="s1">'upperCaseFirst'</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">upperCaseFirst</span><span class="p">(</span><span class="s1">'sharikul'</span><span class="p">)</span> <span class="p">);</span> <span class="c1">// Logs 'Sharikul'</span>
+</pre></div>
+
+<h3>
+<a name="capitalize" class="anchor" href="#capitalize"><span class="octicon octicon-link"></span></a><code>Capitalize</code>
+</h3>
+
+<p>The <code>Capitalize</code> function uppercase's words in the supplied string.</p>
+
+<h4>
+<a name="implementation-11" class="anchor" href="#implementation-11"><span class="octicon octicon-link"></span></a><strong>Implementation</strong>:</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">Capitalize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">string</span><span class="p">);</span>
+</pre></div>
+
+<h4>
+<a name="source-11" class="anchor" href="#source-11"><span class="octicon octicon-link"></span></a><strong>Source</strong>:</h4>
+
+<p><a href="https://github.com/sharikul/F.js/blob/master/F.js#280">https://github.com/sharikul/F.js/blob/master/F.js#280</a></p>
+
+<h4>
+<a name="returns-11" class="anchor" href="#returns-11"><span class="octicon octicon-link"></span></a><strong>Returns</strong>:</h4>
+
+<p>String or Boolean</p>
+
+<h4>
+<a name="predefined-values-11" class="anchor" href="#predefined-values-11"><span class="octicon octicon-link"></span></a><strong>Predefined values</strong>:</h4>
+
+<p>None</p>
+
+<h4>
+<a name="usage-11" class="anchor" href="#usage-11"><span class="octicon octicon-link"></span></a><strong>Usage</strong>:</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">Expose</span><span class="p">(</span><span class="s1">'Capitalize'</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">Capitalize</span><span class="p">(</span><span class="s1">'hello, my name is sharikul'</span><span class="p">)</span> <span class="p">);</span> <span class="c1">// Logs 'Hello, My Name Is Sharikul'</span>
+</pre></div>
+
+<h3>
+<a name="inarray" class="anchor" href="#inarray"><span class="octicon octicon-link"></span></a><code>inArray</code>
+</h3>
+
+<p>The <code>inArray</code> function checks in the supplied array whether the value specified exists in that array.</p>
+
+<h4>
+<a name="implementation-12" class="anchor" href="#implementation-12"><span class="octicon octicon-link"></span></a><strong>Implementation</strong>:</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">inArray</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">array</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+</pre></div>
+
+<h4>
+<a name="source-12" class="anchor" href="#source-12"><span class="octicon octicon-link"></span></a><strong>Source</strong>:</h4>
+
+<p><a href="https://github.com/sharikul/F.js/blob/master/F.js#312">https://github.com/sharikul/F.js/blob/master/F.js#312</a></p>
+
+<h4>
+<a name="returns-12" class="anchor" href="#returns-12"><span class="octicon octicon-link"></span></a><strong>Returns</strong>:</h4>
+
+<p>Boolean</p>
+
+<h4>
+<a name="predefined-values-12" class="anchor" href="#predefined-values-12"><span class="octicon octicon-link"></span></a><strong>Predefined values</strong>:</h4>
+
+<p>None</p>
+
+<h4>
+<a name="usage-12" class="anchor" href="#usage-12"><span class="octicon octicon-link"></span></a><strong>Usage</strong>:</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">Expose</span><span class="p">(</span><span class="s1">'inArray'</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'name'</span><span class="p">,</span> <span class="s1">'Sharikul'</span><span class="p">];</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">inArray</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">)</span> <span class="p">);</span> <span class="c1">// Logs 'true'</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">inArray</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="s1">'age'</span><span class="p">)</span> <span class="p">);</span> <span class="c1">// Logs 'false'</span>
+</pre></div>
+
+<h3>
+<a name="trim" class="anchor" href="#trim"><span class="octicon octicon-link"></span></a><code>Trim</code>
+</h3>
+
+<p>This function removes whitespace from around the string supplied.</p>
+
+<h4>
+<a name="implementation-13" class="anchor" href="#implementation-13"><span class="octicon octicon-link"></span></a><strong>Implementation</strong>:</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">Trim</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">word</span><span class="p">);</span>
+</pre></div>
+
+<h4>
+<a name="source-13" class="anchor" href="#source-13"><span class="octicon octicon-link"></span></a><strong>Source</strong>:</h4>
+
+<p><a href="https://github.com/sharikul/F.js/blob/master/F.js#337">https://github.com/sharikul/F.js/blob/master/F.js#337</a></p>
+
+<h4>
+<a name="returns-13" class="anchor" href="#returns-13"><span class="octicon octicon-link"></span></a><strong>Returns</strong>:</h4>
+
+<p>String or Boolean</p>
+
+<h4>
+<a name="predefined-values-13" class="anchor" href="#predefined-values-13"><span class="octicon octicon-link"></span></a><strong>Predefined values</strong>:</h4>
+
+<p>None</p>
+
+<h4>
+<a name="usage-13" class="anchor" href="#usage-13"><span class="octicon octicon-link"></span></a><strong>Usage</strong>:</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">Expose</span><span class="p">(</span><span class="s1">'Trim'</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">Trim</span><span class="p">(</span><span class="s1">' hello '</span><span class="p">)</span> <span class="p">);</span> <span class="c1">// Logs 'hello'</span>
+</pre></div>
+
+<h3>
+<a name="ltrim" class="anchor" href="#ltrim"><span class="octicon octicon-link"></span></a><code>lTrim</code>
+</h3>
+
+<p>The <code>lTrim</code> function removes whitespace to the left of the string provided.</p>
+
+<h4>
+<a name="implementation-14" class="anchor" href="#implementation-14"><span class="octicon octicon-link"></span></a><strong>Implementation</strong>:</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">lTrim</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">word</span><span class="p">);</span>
+</pre></div>
+
+<h4>
+<a name="source-14" class="anchor" href="#source-14"><span class="octicon octicon-link"></span></a><strong>Source</strong>:</h4>
+
+<p><a href="https://github.com/sharikul/F.js/blob/master/F.js#352">https://github.com/sharikul/F.js/blob/master/F.js#352</a></p>
+
+<h4>
+<a name="returns-14" class="anchor" href="#returns-14"><span class="octicon octicon-link"></span></a><strong>Returns</strong>:</h4>
+
+<p>String or Boolean</p>
+
+<h4>
+<a name="predefined-values-14" class="anchor" href="#predefined-values-14"><span class="octicon octicon-link"></span></a><strong>Predefined values</strong>:</h4>
+
+<p>None</p>
+
+<h4>
+<a name="usage-14" class="anchor" href="#usage-14"><span class="octicon octicon-link"></span></a><strong>Usage</strong>:</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">Expose</span><span class="p">(</span><span class="s1">'lTrim'</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">lTrim</span><span class="p">(</span><span class="s1">'  hello  '</span><span class="p">)</span> <span class="p">);</span> <span class="c1">// Logs 'Hello  '</span>
+</pre></div>
         </section>
 
         <aside id="sidebar">
