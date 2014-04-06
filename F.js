@@ -652,7 +652,7 @@
      *     onClick
      *     onMouseDown
      *     onMouseUp
-     *     onMouseUp
+     *     onMouseOut
      *     onMouseOver
      *     onDblClick
      *     onMouseMove
