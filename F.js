@@ -370,7 +370,7 @@
 
         /**
          * Checks if the function exists in the scope provided, window by default.
-         * @return bool
+         * @return boolean
          *
          * Usage:
          *     function fn() {return 'fn';}
@@ -682,7 +682,7 @@
     });
 
     /**
-     * A loop to generate various error handlers, prefixed with '_'.
+     * A loop to generate various error handlers, prefixed with '_' and supports formatted strings.
      *
      * Functions that will be created are:
      *     _SyntaxError
