@@ -93,6 +93,8 @@
          *
          * Usage:
          *      Format('Hello, {0}. You are {1} years old.', 'Sharikul', 18)
+         *      == OR ==
+         *      Format('Hello, {0}. You are {1} years old.', ['Sharikul', 18])
          *
          *   Returns:
          *      'Hello, Sharikul. You are 18 years old.'
@@ -102,7 +104,8 @@
             if(F.isString(string)) {
                 var args = arguments;
                 return string.replace(/{([0-9]+)}/g, function(raw, number) {
-                    return !F.isUndefined(args[Number(number) + 1]) ? args[Number(number) + 1]: raw;
+                    number = Number(number);
+                    return F.isArray(args[1]) ? args[1][number]: args[number + 1];
                 });
             }
 
@@ -691,6 +694,26 @@
         if(!F.isFunction(F['on' + event])) {
             F['on' + event] = function(callback, element, bubble) {
                 return F.attachEvent(event.toLowerCase(), callback, element, bubble);
+            }
+        }
+    });
+
+    /**
+     * A loop to generate various error handlers, prefixed with '_'.
+     * @uses F.Format, F.toArray
+     *
+     * Usage:
+     *     _SyntaxError('Error message: {0}', message)
+     *
+     * NOTE: 
+     *     Though each function internally uses F.Format, each numerical value must be supplied as an individual element, and not in an array.
+     */
+
+    F.forEach(['SyntaxError', 'TypeError', 'ReferenceError', 'URIError', 'EvalError', 'Error', 'RangeError'], function(error) {
+
+        if(!F.isFunction(F['_' + error])) {
+            F['_' + error] = function(message) {
+                throw new window[error](F.Format(message, F.toArray(arguments).slice(1)));
             }
         }
     });
