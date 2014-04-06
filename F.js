@@ -474,7 +474,7 @@
                 if(F.isObject(style)) {
 
                     F.forEach(style, function(value, property) {
-                        elements.forEach(function(elem) {
+                        F.forEach(elements, function(elem) {
                             elem.style[property] = value;
                         });
                     });
