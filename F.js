@@ -83,6 +83,8 @@
                 return range;
             }
 
+
+
             throw TypeError(F.Format('Arguments 1 and 2 must be numbers, but type is: {0} and {1} respectively.', typeof first, typeof second));
             return false;
         },
@@ -279,20 +281,20 @@
 
         Capitalize: function(string) {
             if(F.isString(string)) {
-                var string = '',
+                var sentence = '',
                     words = string.match(/\s/g) ? string.split(/\s+/g): string;
 
-                if(F.isArray(words)) {
-                    F.forEach(words, function(_word) {
-                        string += F.upperCaseFirst(_word) + ' ';
+                if(F.isArray(string)) {
+                    F.forEach(string, function(_word) {
+                        sentence += F.upperCaseFirst(_word) + ' ';
                     });
                 }
 
                 else {
-                    string = F.upperCaseFirst(words);
+                    sentence = F.upperCaseFirst(words);
                 }
 
-                return F.Trim(string);
+                return F.Trim(sentence);
             }
 
             return false;
@@ -661,7 +663,6 @@
      *     onKeyUp
      *     onChange
      *     onSelect
-     *     onChange
      * 
      * @uses F.attachEvent
      * @return boolean
@@ -672,7 +673,7 @@
      *     }, ['#id', '.class', 'element'])
      */
     
-    F.forEach(['Click', 'MouseDown', 'MouseUp', 'MouseOut', 'MouseOver', 'DblClick', 'MouseMove', 'KeyDown', 'KeyPress', 'KeyUp', 'Change', 'Select', 'Change'], function(event) {
+    F.forEach(['Click', 'MouseDown', 'MouseUp', 'MouseOut', 'MouseOver', 'DblClick', 'MouseMove', 'KeyDown', 'KeyPress', 'KeyUp', 'Change', 'Select'], function(event) {
 
         if(!F.isFunction(F['on' + event])) {
             F['on' + event] = function(callback, element, bubble) {
