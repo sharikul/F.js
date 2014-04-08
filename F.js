@@ -49,7 +49,7 @@
                 return true;
             }
 
-            throw TypeError(F.Format('Types of arguments 1 and 2 must be object and function, but got: {0} and {1}, respectively.', typeof object, typeof callback));
+            throw TypeError(F.Format('Types of arguments 1 and 2 must be object and function, but got: {0} and {1}, respectively.', F.typeOf(object), F.typeOf(callback)));
             return false;
         },
 
@@ -85,7 +85,7 @@
 
 
 
-            throw TypeError(F.Format('Arguments 1 and 2 must be numbers, but type is: {0} and {1} respectively.', typeof first, typeof second));
+            throw TypeError(F.Format('Arguments 1 and 2 must be numbers, but type is: {0} and {1} respectively.', F.typeOf(first), F.typeOf(second)));
             return false;
         },
 
