@@ -107,7 +107,19 @@
                 var args = arguments;
                 return string.replace(/{([0-9]+)}/g, function(raw, number) {
                     number = Number(number);
-                    return F.isArray(args[1]) ? args[1][number]: args[number + 1];
+
+                    if(F.isArray(args[1])) {
+                        return !F.isUndefined(args[1][number]) ? args[1][number]: raw;
+                    }
+
+                    else if(!F.isUndefined(args[number + 1])) {
+                        return args[number + 1];
+                    }
+
+                    else {
+                        return raw;
+                    }
+
                 });
             }
 
@@ -284,8 +296,8 @@
                 var sentence = '',
                     words = string.match(/\s/g) ? string.split(/\s+/g): string;
 
-                if(F.isArray(string)) {
-                    F.forEach(string, function(_word) {
+                if(F.isArray(words)) {
+                    F.forEach(words, function(_word) {
                         sentence += F.upperCaseFirst(_word) + ' ';
                     });
                 }
@@ -701,7 +713,7 @@
      *     _SyntaxError('Error message: {0}', message)
      *
      * NOTE: 
-     *     Though each function internally uses F.Format, each numerical value must be supplied as an individual element, and not in an array.
+     *     Though each function internally uses F.Format, each placeholder must have its value supplied as an individual argument after the string, arrays don't work in this scenario.
      */
 
     F.forEach(['SyntaxError', 'TypeError', 'ReferenceError', 'URIError', 'EvalError', 'Error', 'RangeError'], function(error) {
