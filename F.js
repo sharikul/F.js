@@ -753,8 +753,7 @@
                     return array;
                 }
 
-                _F._TypeError('"{0}" expects argument 1 to be an array, but type of argument 1 is {1}', fn, F.typeOf(array));
-                return false;
+                F._TypeError('"{0}" expects argument 1 to be an array, but type of argument 1 is {1}', fn, F.typeOf(array));
             }
         }
     });
