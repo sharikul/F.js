@@ -49,8 +49,7 @@
                 return true;
             }
 
-            throw TypeError(F.Format('Types of arguments 1 and 2 must be object and function, but got: {0} and {1}, respectively.', F.typeOf(object), F.typeOf(callback)));
-            return false;
+            throw F._TypeError('Types of arguments 1 and 2 must be object and function, but got: {0} and {1}, respectively.', F.typeOf(object), F.typeOf(callback));
         },
 
         /**
@@ -308,6 +307,7 @@
 
                 return F.Trim(sentence);
             }
+
 
             return false;
         },
@@ -710,17 +710,21 @@
      * @uses F.Format, F.toArray
      *
      * Usage:
-     *     _SyntaxError('Error message: {0}', message)
+     *     _SyntaxError('Error message: {0}', 'Message')
      *
-     * NOTE: 
-     *     Though each function internally uses F.Format, each placeholder must have its value supplied as an individual argument after the string, arrays don't work in this scenario.
+     *      OR
+     *     _SyntaxError('Error message: {0}', ['Message'])
      */
 
     F.forEach(['SyntaxError', 'TypeError', 'ReferenceError', 'URIError', 'EvalError', 'Error', 'RangeError'], function(error) {
 
         if(!F.isFunction(F['_' + error])) {
             F['_' + error] = function(message) {
-                throw new window[error](F.Format(message, F.toArray(arguments).slice(1)));
+                var args = F.toArray(arguments).slice(1),
+                    arg = F.isArray(args[0]) ? args[0]: args; 
+
+                throw new window[error](F.Format(message, arg));
+                return false;
             }
         }
     });
