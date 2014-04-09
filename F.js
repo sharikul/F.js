@@ -738,7 +738,7 @@
      *     arrayLTrim
      *
      * @uses F.Trim, F.lTrim, F.rTrim
-     * @return array
+     * @return array|error
      */
 
     F.forEach(['Trim', 'rTrim', 'lTrim'], function(fn) {
@@ -749,9 +749,12 @@
                     F.forEach(array, function(value, key) {
                         array[key] = F[fn](value);
                     });
+
+                    return array;
                 }
 
-                return array;
+                _F._TypeError('"{0}" expects argument 1 to be an array, but type of argument 1 is {1}', fn, F.typeOf(array));
+                return false;
             }
         }
     });
