@@ -788,7 +788,7 @@
         }
 
         else if(F.isArray(fn)) {
-            fn.forEach(function(_fn) {
+            F.forEach(fn, function(_fn) {
                 scope[_fn] = F[_fn];
                 failed = false;
             });
