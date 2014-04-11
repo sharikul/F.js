@@ -42,7 +42,7 @@
          */
 
         forEach: function(object, callback) {
-            if(object && callback) {
+            if(typeof object === 'object' && typeof callback === 'function') {
                 for(var key in object) {
                     callback(object[key], key);
                 }
