@@ -9,7 +9,7 @@
 
         /**
          * Simples, a -to-array converter, e.g. a nodelist.
-         * @return array
+         * @return array|error
          *
          * Usage:
          *      toArray(NodeList[5])
@@ -19,21 +19,22 @@
          */
 
         toArray: function(nonArray) {
-            var array = [];
-
             if(!F.isArray(nonArray)) {
+                var array = [];
 
                 for(var key in nonArray) {
                     array[key] = nonArray[key];
                 }
+
+                return array;
             }
 
-            return array;
+            F._TypeError('[toArray] Argument 1 cannot be an array.');
         },
 
         /**
          * Similar to Array.prototype.forEach, but supports objects and arrays.
-         * @return mixed
+         * @return mixed|error
          *
          * Usage:
          *      var obj = {name: 'Sharikul', age: 18}
@@ -49,12 +50,12 @@
                 return true;
             }
 
-            throw F._TypeError('Types of arguments 1 and 2 must be object and function, but got: {0} and {1}, respectively.', F.typeOf(object), F.typeOf(callback));
+            F._TypeError('[forEach] Types of arguments 1 and 2 must be object and function, but got: {0} and {1}, respectively.', [F.typeOf(object), F.typeOf(callback)]);
         },
 
         /**
          * A range generator.
-         * @return array
+         * @return array|error
          *
          * Usage:
          *      Range(1,10)
@@ -82,15 +83,12 @@
                 return range;
             }
 
-
-
-            throw TypeError(F.Format('Arguments 1 and 2 must be numbers, but type is: {0} and {1} respectively.', F.typeOf(first), F.typeOf(second)));
-            return false;
+            F._TypeError('[Range] Arguments 1 and 2 must be numbers, but types on this call are: {0} and {1} respectively.', [F.typeOf(first), F.typeOf(second)]);
         },
 
         /**
          * String formatter using numerical indexes representing arguments order after string.
-         * @return string
+         * @return string|error
          *
          * Usage:
          *      Format('Hello, {0}. You are {1} years old.', 'Sharikul', 18)
@@ -122,13 +120,13 @@
                 });
             }
 
-            throw TypeError('Argument 1 must be a string.');
+            throw TypeError('[Format] Argument 1 must be a string.');
             return false;
         },
 
         /**
          * Returns the number of items in the array or object provided.
-         * @return int
+         * @return integer|error
          *
          * Usage:
          *     Count(['name', 'Sharikul', 'age', 18]);
@@ -140,51 +138,131 @@
          */
         
         Count: function(objOrArray) {
-            var count = 0;
-
             if(F.isArray(objOrArray) || F.isObject(objOrArray)) {
-                count = F.isArray(objOrArray) ? objOrArray.length: Object.keys(objOrArray).length;
+                return F.isArray(objOrArray) ? objOrArray.length: Object.keys(objOrArray).length;
             }
 
-            return count;
+            F._TypeError('[Count] Argument 1 can either be an object or array, but type on this call is: {0}', F.typeOf(objOrArray));
+        },
+
+        /**
+         * Allows the comparision of various objects to check if they equal the same value.
+         * @return boolean|error
+         *
+         * Supported operators:
+         *    =
+         *    !=
+         *    >
+         *    <
+         *    >=
+         *    <=
+         *
+         * Usage:
+         *     var array1 = [1,2],
+         *         array2 = [3,4]
+         *
+         *      if( Compare(array1.length, array2.length, '>', 0) ) {
+         *          ...
+         *      }
+         *
+         *      == COMPARED TO ==
+         *      if(array1.length > 0 && array2.length > 0) {
+         *          ...
+         *      }
+         */
+
+        Compare: function() {
+            var value = arguments[arguments.length - 1],
+                operator = arguments[arguments.length - 2],
+                args = F.toArray(arguments).slice(0, arguments.length - 2),
+                result = undefined;
+
+
+            if(F.isUndefined(value)) {
+                F._TypeError('[Compare] The last argument must be a value.');
+            }
+
+            if(args.length > 0) {
+                switch(operator) {
+                    case '=':
+                        F.forEach(args, function(item) {
+                            result = result !== false ? item === value: false;
+                        });
+                    break;
+
+                    case '!=':
+                        F.forEach(args, function(item) {
+                            result = result !== false ? item !== value: false;
+                        });
+                    break;
+
+                    case '>':
+                        F.forEach(args, function(item) {
+                            result = result !== false ? item > value: false;
+                        });
+                    break;
+
+                    case '<':
+                        F.forEach(args, function(item) {
+                            result = result !== false ? item < value: false;
+                        });
+                    break;
+
+                    case '>=': 
+                        F.forEach(args, function(item) {
+                            result = result !== false ? item >= value: false;
+                        });
+                    break;
+
+                    case '<=':
+                        F.forEach(args, function(item) {
+                            result = result !== false ? item <= value: false;
+                        });
+                    break;
+                }
+            }
+
+            else {
+                F._Error('[Compare] Comparision variables must be the first argument(s), followed by the operator and value to test against.');
+            }
+
+            return result;
         },
 
         /**
          * Array concatenator that can merge several arrays into one MASTER array.
-         * @return array
+         * @return array|error
          *
-         * Definitions:
-         *  A nested group array is one that retains the array quality of the subarrays and is presented like:
-         *  [[Array 1], [Array 2]]
-         *  The default behaviour is to extract their individual values and store them in the master array
-         */
+         *
+         * Usage:
+         *     Concat([1,2], ['Sharikul', 'Islam'])
+         *
+         *  Returns:
+         *      [1,2, 'Sharikul', 'Islam']
+         */      
 
         Concat: function() {
             var masterArray = [];
 
-            for(var i = 0; i < arguments.length; i++) {
-                var argument = arguments[i],
-                    nestedGroup = F.isBoolean(arguments[arguments.length - 1]) && arguments[arguments.length - 1] === true ? true: false;
+            F.forEach(arguments, function(argument, count) {
 
                 if(F.isArray(argument)) {
-                    if(nestedGroup) {
-                        masterArray.push(argument);
-                    }
-
-                    else {
-                        argument.forEach(function(item) {
-                            masterArray.push(item);
-                        });
-                    }
+                    argument.forEach(function(item) {
+                        masterArray.push(item);
+                    });
                 }
-            }
+
+                else {
+                    F._TypeError('[Concat] Argument {0} must be an array, but type on this call is: {1}', [count, F.typeOf(argument)]);
+                }
+            });
 
             return masterArray;
         },
 
         /**
          * Custom event handler register. Allows for an event with a callback to be attached to various elements.
-         * @return boolean
+         * @return boolean|error
          *
          * Usage:
          *      attachEvent('click', function() {
@@ -207,9 +285,8 @@
                         successful = true;
                     }
 
-                    else if(item.attachEvent) {
-                        item.attachEvent('on' + event, callback);
-                        successful = true;
+                    else {
+                        F._Error('[attachEvent] Need to use addEventListener to operate.');
                     }
                 });
             }
@@ -257,12 +334,18 @@
                 storage = split[0].toLowerCase(), // local or session?
                 action = split[1].toLowerCase(); // get/set/remove?
 
-            return window[storage + 'Storage'][action + 'Item'](key, value);
+                if(!F.isUndefined(window[storage + 'Storage'] && window[storage + 'Storage'][action + 'Item'])) {
+                    return window[storage + 'Storage'][action + 'Item'](key, value);
+                }
+
+                else {
+                    F._ReferenceError('[Store] Function {0}Storage.{1}Item does not exist.', [storage, action]);
+                }
         },
 
         /**
          * Capitalize's the first letter of the word provided.
-         * @return string|boolean
+         * @return string|error
          * 
          * Usage:
          *     upperCaseFirst('sharikul')
@@ -276,12 +359,12 @@
                 return word.charAt(0).match(/[A-z]/) ? word.charAt(0).toUpperCase() + word.slice(1): word;
             }
 
-            return false;
+            F._TypeError('[upperCaseFirst] Argument 1 must be a string, but type on this call is: {0}', F.typeOf(word));
         },
 
         /**
          * Capitalize's words in the provided string.
-         * @return string|boolean
+         * @return string|error
          *
          * Usage:
          *     Capitalize('hello, my name is sharikul')
@@ -309,12 +392,12 @@
             }
 
 
-            return false;
+            F._TypeError('[Capitalize] Argument 1 must be a string, but type on this call is: {0}', F.typeOf(string));
         },
 
         /**
          * Checks whether the string provided exists in the array provided.
-         * @return boolean
+         * @return boolean|error
          *
          * Usage:
          *     inArray(['sharikul', 18], 'sharikul')
@@ -324,22 +407,24 @@
          */
         
         inArray: function(array, value) {
-            var successful = false;
-
             if(F.isArray(array) && value) {
+                var successful = false;
+
                 F.forEach(array, function(item) {
                     if(item === value) {
                         successful = true;
                     }
                 });
+
+                return successful;
             }
 
-            return successful;
+            F._TypeError('[inArray] Argument 1 must be an array and argument 2 cannot be undefined, but types on this call are: {0} and {1} respectively.', [F.typeOf(array), F.typeOf(value)]);
         },
 
         /**
          * Removes whitespace around the string provided.
-         * @return string|boolean
+         * @return string|error
          *
          * Usage:
          *     Trim('    Sharikul    ')
@@ -349,12 +434,12 @@
          */
         
         Trim: function(word) {
-            return F.isString(word) ? word.replace(/^\s+|\s+$/g, ''): false;
+            return F.isString(word) ? word.replace(/^\s+|\s+$/g, ''): F._TypeError('[Trim] Argument 1 must be a string, but type on this call is: {0}', F.typeOf(word));
         },
 
         /**
          * Removes whitespace at the beginning of the string provided only.
-         * @return string|boolean
+         * @return string|error
          *
          * Usage:
          *     lTrim('     Sharikul     ')
@@ -364,12 +449,12 @@
          */
         
         lTrim: function(word) {
-            return F.isString(word) ? word.replace(/^\s+/, ''): false;
+            return F.isString(word) ? word.replace(/^\s+/, ''): F._TypeError('[lTrim] Argument 1 must be a string, but type on this call is: {0}', F.typeOf(word));
         },
 
         /**
          * Removes whitespace at the end of the string provided only.
-         * @return string|boolean
+         * @return string|error
          *
          * Usage:
          *     rTrim('     Sharikul     ')
@@ -379,12 +464,12 @@
          */
         
         rTrim: function(word) {
-            return F.isString(word) ? word.replace(/\s+$/, ''): false;
+            return F.isString(word) ? word.replace(/\s+$/, ''): F._TypeError('[rTrim] Argument 1 must be a string, but type on this call is: {0}', F.typeOf(word));
         },
 
         /**
          * Checks if the function exists in the scope provided, window by default.
-         * @return boolean
+         * @return boolean|error
          *
          * Usage:
          *     function fn() {return 'fn';}
@@ -403,7 +488,7 @@
                 return !F.isUndefined(scope[fn]) && F.isFunction(scope[fn]);
             }
 
-            return false;
+            F._TypeError('[functionExists] Argument 1 must be a string, but type on this call is: {0}', F.typeOf(fn));
         },
 
         /**
@@ -551,7 +636,7 @@
         setAttribute: function(attribute, element) {
             var elements = F.getElement(element);
 
-            if(F.Count(attribute) > 0 && F.Count(elements) > 0) {
+            if(F.Compare(attribute.length, elements.length, '>', 0)) {
                 F.forEach(attribute, function(value, attr) {
                     F.forEach(elements, function(elem) {
                         elem.setAttribute(attr, value);
@@ -571,7 +656,7 @@
             var hasAttribute = undefined,
                 elements = F.getElement(element);
 
-            if(F.Count(attribute) > 0 && F.Count(elements) > 0) {
+            if(F.Compare(attribute.length, elements.length, '>', 0)) {
                 F.forEach(elements, function(elem) {
                     if(F.isString(attribute)) {
                         hasAttribute = hasAttribute !== false ? elem.hasAttribute(attribute): false;
@@ -646,13 +731,13 @@
                     return false;
                 }
 
-                for(var i = 0; i < arguments.length; i++) {
-                    if(F.typeOf(arguments[i]) !== type.toLowerCase()) {
-                        return false;
-                    }
-                }
+                var isType;
 
-                return true;
+                F.forEach(arguments, function(argument) {
+                    isType = isType !== false ? !(F.typeOf(argument) !== type.toLowerCase()): false;
+                });
+
+                return isType;
 
             }
         }
