@@ -3,19 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <script src="F.min.js"></script>
+    <script src="F.js"></script>
     <script>
-    Expose('addStyle');
+    Expose(['addStyle', 'onClick', 'getElement']);
     </script>
 </head>
 <body>
-    <button id="b">Button</button>
+    <button id="b">Click to generate</button>
     <script>
 
     addStyle('#b', {
         fontFamily: 'sans-serif',
         fontSize: '1.5em'
     });
+
+    onClick(function() {
+        if(getElement('#c')[0] === undefined) {
+            var h1 = document.createElement('h1');
+            h1.textContent = Math.random();
+            h1.id = 'c';
+            document.body.appendChild(h1);
+        }
+
+        else {
+            getElement('#c')[0].textContent = Math.random();
+        }
+    }, '#b');
 
     </script>
 </body>

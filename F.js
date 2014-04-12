@@ -682,6 +682,37 @@
             }
 
             return elements;
+        },
+
+        /**
+         * A generic filter function.
+         * @return array|error
+         *
+         * Usage:
+         *     var one_to_five = Range(1, 5);
+         *     
+         *     Filter(one_to_five, function(num) {
+         *         return num % 2 === 0;    
+         *     });
+         *
+         *  Returns:
+         *      [2, 4]
+         */
+
+        Filter: function(array, callback) {
+            if(F.isArray(array) && F.isFunction(callback)) {
+                var arr = [];
+
+                F.forEach(array, function(item) {
+                    if(callback(item)) {
+                        arr.push(item);
+                    }
+                });
+
+                return arr;
+            }
+
+            F._TypeError('[Filter] Argument 1 must be an array, and argument 2 must be a function, but types on this call are: {0} and {1} respectively.', [F.typeOf(array), F.typeOf(callback)]);
         }
     };
 
@@ -796,7 +827,6 @@
                     arg = F.isArray(args[0]) ? args[0]: args; 
 
                 throw new window[error](F.Format(message, arg));
-                return false;
             }
         }
     });
@@ -857,14 +887,18 @@
         }
 
         else if(F.isString(fn) && fn !== '*') {
-            scope[fn] = F[fn];
-            failed = false;
+            if(F.isFunction(F[fn])) {
+                scope[fn] = F[fn];
+                failed = false;
+            }
         }
 
         else if(F.isArray(fn)) {
             F.forEach(fn, function(_fn) {
-                scope[_fn] = F[_fn];
-                failed = false;
+                if(F.isFunction(F[_fn])) {
+                    scope[_fn] = F[_fn];
+                    failed = false;
+                }
             });
         }
 
