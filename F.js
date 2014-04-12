@@ -183,43 +183,35 @@
             }
 
             if(args.length > 0) {
-                switch(operator) {
-                    case '=':
-                        F.forEach(args, function(item) {
-                            result = result !== false ? item === value: false;
-                        });
-                    break;
+                F.forEach(args, function(item) {
+                    if(result !== false) {
+                        switch(operator) {
+                            case '=':
+                                result = item === value;
+                            break;
 
-                    case '!=':
-                        F.forEach(args, function(item) {
-                            result = result !== false ? item !== value: false;
-                        });
-                    break;
+                            case '!=':
+                                result = item !== value;
+                            break;
 
-                    case '>':
-                        F.forEach(args, function(item) {
-                            result = result !== false ? item > value: false;
-                        });
-                    break;
+                            case '>':
+                                result = item > value;
+                            break;
 
-                    case '<':
-                        F.forEach(args, function(item) {
-                            result = result !== false ? item < value: false;
-                        });
-                    break;
+                            case '<':
+                                result = item < value;
+                            break;
 
-                    case '>=': 
-                        F.forEach(args, function(item) {
-                            result = result !== false ? item >= value: false;
-                        });
-                    break;
+                            case '>=':
+                                result = item >= value;
+                            break;
 
-                    case '<=':
-                        F.forEach(args, function(item) {
-                            result = result !== false ? item <= value: false;
-                        });
-                    break;
-                }
+                            case '<=':
+                                result = item <= value;
+                            break;
+                        }
+                    }
+                });
             }
 
             else {
@@ -838,7 +830,7 @@
                     return array;
                 }
 
-                F._TypeError('"{0}" expects argument 1 to be an array, but type of argument 1 is {1}', 'array' + F.upperCaseFirst(fn), F.typeOf(array));
+                F._TypeError('[{0}] Argument 1 must be an array, but type of on this call is: {1}', 'array' + F.upperCaseFirst(fn), F.typeOf(array));
             }
         }
     });
