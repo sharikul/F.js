@@ -14,6 +14,9 @@ Expose(fn, scope);
 
 `scope`: The scope that the functions should be available from. This is `window` by default.
 
+#### Returns
+Boolean
+
 ### Example
 ```javascript
 Expose('inArray');
@@ -24,3 +27,26 @@ var scope = {};
 Expose(['inArray', 'toArray', 'Format'], scope);
 ```
 
+## Functions
+
+### `toArray`
+You can use `toArray` to convert array-like objects, such as a nodelist, to an array.
+
+#### Usage
+```javascript
+toArray(nonArray);
+```
+
+#### Parameters
+`nonArray`: The array-like object to convert.
+
+#### Returns
+Array or Error
+
+#### Example
+```javascript
+Expose('toArray');
+
+var divs = document.querySelectorAll('div'),
+    arr_div = toArray(divs);
+```
