@@ -177,11 +177,6 @@
                 args = F.toArray(arguments).slice(0, arguments.length - 2),
                 result = undefined;
 
-
-            if(F.isUndefined(value)) {
-                F._TypeError('[Compare] The last argument must be a value.');
-            }
-
             if(args.length > 0) {
                 F.forEach(args, function(item) {
                     if(result !== false) {
