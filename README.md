@@ -257,3 +257,55 @@ attachEvent('click', function() {
     alert('You clicked!'); 
 }, '#button');
 ```
+
+### `typeOf`
+`typeOf` operates like `typeof`, but with support for a variety of types, including `array` and `nodelist`.
+
+#### Usage
+```javascript
+typeOf(element);
+```
+
+#### Parameters
+`element`: The element whose type should be checked.
+
+#### Returns
+String
+
+#### Example
+```javascript
+Expose('typeOf');
+
+typeOf('string'); // 'string'
+typeOf([1,2]); // 'array'
+typeOf( document.querySelectorAll('body') ); // 'nodelist'
+```
+
+### `Store`
+`Store` acts as a wrapper around the HTML 5 specific `local` and `session` storage functions. 
+
+#### Usage
+```javascript
+Store(access, key, value);
+```
+
+#### Parameters
+`access`: A string representing the storage type and access method to use, separated by a dot (_period_).
+
+`key`: A string that represents a record in the respective storage.
+
+`value`: Only to be specified when creating a new record.
+
+#### Returns
+Mixed or Error
+
+#### Example
+```javascript
+Expose('Store');
+
+// Set an item in the local storage. Similar with session storage.
+Store('session.set', 'name', 'Sharikul');
+
+// Get the value of an item
+Store('session.get', 'name'); // 'Sharikul'
+```

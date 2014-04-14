@@ -302,7 +302,7 @@
 
         /**
          * A wrapper around the local storage and session storage functions.
-         * @return mixed
+         * @return mixed|error
          *
          * Usage:
          *     Store('session.set', 'id', 8)
