@@ -234,7 +234,7 @@
             F.forEach(arguments, function(argument, count) {
 
                 if(F.isArray(argument)) {
-                    argument.forEach(function(item) {
+                    F.forEach(argument, function(item) {
                         masterArray.push(item);
                     });
                 }

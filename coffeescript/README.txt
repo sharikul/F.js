@@ -1,0 +1,1 @@
+This CoffeeScript file is only present for presentational purposes. F.js is just written in plain JavaScript.

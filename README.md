@@ -50,3 +50,139 @@ Expose('toArray');
 var divs = document.querySelectorAll('div'),
     arr_div = toArray(divs);
 ```
+
+### `forEach`
+You can use `forEach` to loop over an array or object (_or actually anything that can be looped through_).
+
+#### Usage
+```javascript
+forEach(thing, callback);
+```
+
+#### Parameters
+`thing`: The array or object (_or whatever_) to loop through.
+`callback`: The function to execute upon looping. You can pass two parameters to the callback which are `value` and `key`.
+
+#### Returns
+Boolean or Error
+
+#### Example
+```javascript
+Expose('forEach');
+
+function consoleLogArguments() {
+    forEach(arguments, function(value) {
+        console.log('Argument: ' + value);
+    });
+}
+
+consoleLogArguments('Hello');
+```
+
+### `Range`
+`Range` can be used to generate a sequence of numbers.
+
+#### Usage
+```javascript
+Range(first, second);
+```
+
+#### Parameters
+`first`: The number to start the sequence.
+`second`: The number that ends the sequence.
+
+#### Returns
+Array or Error
+
+#### Example
+```javascript
+Expose('Range');
+
+one210 = Range(1, 10); // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+ten201 = Range(10, 1); // [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+```
+
+### `Format`
+You can use `Format` to create formatted strings. Instead of percentage-signified placeholders, `Format` searches for numerical indexes wrapped around in curly braces in the string provided.
+
+#### Usage
+```javascript
+Format(string, param1, param2...);
+
+// Or
+Format(string, [param1, param2...]);
+```
+
+#### Parameters
+`string`: The string to process and return.
+`params`: The values of each numerical index in the string (_in order_). You can either provide the parameters as separate arguments after the string, or within an array after the string.
+
+#### Returns
+String or Error
+
+#### Example
+```javascript
+Expose('Format');
+
+Format('Hello, my name is {0} and I am {1} years old.', 'Sharikul', 18)
+
+// Or
+Format('Hello, my name is {0} and I am {1} years old.', ['Sharikul', 18]);
+
+// Returns "Hello, my name is Sharikul and I am 18 years old."
+```
+
+### `Count`
+You can use `Count` to return the length of the array or object provided.
+
+#### Usage
+```javascript
+Count(objOrArray);
+```
+
+#### Parameters
+`objOrArray`: The object or array to check.
+
+#### Returns
+Integer or Error
+
+#### Example
+```javascript
+Expose('Count');
+
+var obj = {name: 'Sharikul', age: 18},
+    arr = ['name', 'Sharikul', 'age', 18];
+
+Count(obj); // 2
+Count(arr); // 4
+```
+
+### `Compare`
+`Compare` allows you to check whether multiple variables meet the specified condition and are all equal to a particular value.
+
+#### Usage
+```javascript
+Compare(var1, var2..., operator, value);
+```
+
+#### Parameters
+`vars`: Since `Concat` doesn't hardcode the variables that it expects, you can provide any number of variables to check upon. 
+`operator`: How you want to check the variables. You can supply: `=`, `!=`, `>`, `<`, `>=`, `<=`.
+`value`: The value that you want to check is contained in the variables supplied.
+
+#### Returns
+Boolean or Error
+
+#### Example
+```javascript
+Expose('Compare');
+
+var var1 = 'Sharikul',
+    var2 = 'Sharikul',
+    var3 = 18,
+    var4 = 19;
+
+Compare(var1, var2, '=', 'Sharikul'); // true
+Compare(var1, var2, var3, '=', 18); // false
+Compare(var3, var4, '>', 15); // true
+```
