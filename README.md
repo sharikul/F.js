@@ -191,3 +191,69 @@ Compare(var1, var2, '=', 'Sharikul'); // true
 Compare(var1, var2, var3, '=', 18); // false
 Compare(var3, var4, '>', 15); // true
 ```
+
+### `Concat`
+You can use `Concat` to merge several arrays into one array.
+
+#### Usage
+``javascript
+Concat(array1, array2...);
+```
+
+#### Parameters
+`array`: Since `Concat` doesn't hardcode the number of arrays it requires, you can supply any number of arrays as arguments to merge.
+
+#### Returns
+Array or Error
+
+#### Example
+```javascript
+Expose('Concat');
+
+var array1 = [1,2]
+    array2 = [3,4]
+    array3 = ['Sharikul', 18];
+
+Concat(array1, array2, array3); // [1, 2, 3, 4, 'Sharikul', 18];
+```
+
+### `attachEvent`
+`attachEvent` allows you to attach an event listener to elements. The difference here is that you can attach one event with a callback to a variety of elements altogether.
+
+#### Usage
+```javascript
+attachEvent(event, callback, elements, bubble);
+```
+
+#### Parameters
+`event`: The name of the event listener to attach. Examples include `click`, `mouseover`.
+
+`callback`: The function to execute when the event is fired.
+
+`elements`: The elements that should have the event attached to. This can be supplied as a string, or an array containing a variety of elements.
+
+`bubble`: Boolean to dictate whether to enable event bubbling. `false` by default.
+
+#### Returns
+Boolean or Error
+
+#### Example
+```javascript
+Expose('attachEvent');
+```
+
+```html
+<button id="button">Button</button>
+<input type="button" id="ibutton">Input button
+```
+
+```javascript
+attachEvent('click', function() {
+    alert('You clicked!');
+}, ['#button', '#ibutton']);
+
+// Or
+attachEvent('click', function() {
+    alert('You clicked!'); 
+}, '#button');
+```
