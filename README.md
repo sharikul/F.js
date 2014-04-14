@@ -61,6 +61,7 @@ forEach(thing, callback);
 
 #### Parameters
 `thing`: The array or object (_or whatever_) to loop through.
+
 `callback`: The function to execute upon looping. You can pass two parameters to the callback which are `value` and `key`.
 
 #### Returns
@@ -89,6 +90,7 @@ Range(first, second);
 
 #### Parameters
 `first`: The number to start the sequence.
+
 `second`: The number that ends the sequence.
 
 #### Returns
@@ -115,6 +117,7 @@ Format(string, [param1, param2...]);
 
 #### Parameters
 `string`: The string to process and return.
+
 `params`: The values of each numerical index in the string (_in order_). You can either provide the parameters as separate arguments after the string, or within an array after the string.
 
 #### Returns
@@ -167,7 +170,9 @@ Compare(var1, var2..., operator, value);
 
 #### Parameters
 `vars`: Since `Concat` doesn't hardcode the variables that it expects, you can provide any number of variables to check upon. 
+
 `operator`: How you want to check the variables. You can supply: `=`, `!=`, `>`, `<`, `>=`, `<=`.
+
 `value`: The value that you want to check is contained in the variables supplied.
 
 #### Returns
