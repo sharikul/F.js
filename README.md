@@ -196,7 +196,7 @@ Compare(var3, var4, '>', 15); // true
 You can use `Concat` to merge several arrays into one array.
 
 #### Usage
-``javascript
+```javascript
 Concat(array1, array2...);
 ```
 
