@@ -17,6 +17,7 @@ Format(string, [param1, param2, param3...]);
 ### Returns
 * `String`
 * `Error`
+* `Boolean`
 
 ## Example
 ```javascript
