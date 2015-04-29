@@ -11,8 +11,8 @@ forEach(object, callback);
 * `callback` (_function_): The callback to be executed in each loop.
 
 ### Returns
-* _Boolean_
-* _Error_
+* `Boolean`
+* `Error`
 
 ## Example
 ```javascript
