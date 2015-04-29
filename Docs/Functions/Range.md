@@ -1,4 +1,4 @@
-# Range
+# `Range`
 To generate a sequence of numbers in any order. _Defined on line [67](../../F.js#L67)_.
 
 ## Use
