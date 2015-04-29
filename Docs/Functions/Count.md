@@ -17,8 +17,8 @@ Count(objOrArray);
 ```javascript
 Expose('Count');
 
-var obj = {name: 'Sharikul', age: 18},
-    arr = ['name', 'Sharikul', 'age', 18];
+var obj = {name: 'Sharikul', age: 19},
+    arr = ['name', 'Sharikul', 'age', 19];
 
 Count(obj); // 2
 Count(arr); // 4
