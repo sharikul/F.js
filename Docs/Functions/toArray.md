@@ -10,7 +10,8 @@ toArray(nonArray)
 * `nonArray` (_object_): The array-like object to convert.
 
 ### Returns
-* _Array_ or _Error_
+* _Array_
+* _Error_
 
 ## Example
 ```javascript
