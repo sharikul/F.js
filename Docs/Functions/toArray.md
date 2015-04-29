@@ -1,5 +1,5 @@
 # `toArray` 
-To convert array-like objects to an array. _Defined on line [21](../../blob/master/F.js#L21)_.
+To convert array-like objects to an array. _Defined on line [21](../../F.js#L21)_.
 
 ## Use
 ```
