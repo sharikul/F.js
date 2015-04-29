@@ -2,7 +2,7 @@
 The global `Expose` function is to be used to load functions into a specified scope, which is `window` by default.
 
 ## Syntax
-```javascript
+```
 Expose(fn, scope);
 ```
 
