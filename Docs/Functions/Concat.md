@@ -1,5 +1,5 @@
 # `Concat`
-To merge several arrays into one array. _Defined on line [231]((../../F.js#L231))_.
+To merge several arrays into one array. _Defined on line [231](../../F.js#L231)_.
 
 ## Use
 ```
