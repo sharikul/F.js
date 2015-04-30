@@ -1,5 +1,5 @@
 # `Capitalize`
-To capitalise each word in the string provided. _Defined on line [363](../../F.js#363)_.
+To capitalise each word in the string provided. _Defined on line [363](../../F.js#L363)_.
 
 ## Use
 ```
