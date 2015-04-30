@@ -1,5 +1,5 @@
 # `lTrim`
-To trim whitespace on the left of a string. _Defined on line [438](../../F.js#L438)_.
+To remove whitespace on the left of a string. _Defined on line [438](../../F.js#L438)_.
 
 ## Use
 ```
