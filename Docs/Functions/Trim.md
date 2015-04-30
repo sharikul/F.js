@@ -1,5 +1,5 @@
 # `Trim`
-To trim whitespace from around the string provided. _Defined on line [423](../../F.js#L423)_.
+To remove whitespace from around the string provided. _Defined on line [423](../../F.js#L423)_.
 
 ## Use
 ```
