@@ -700,7 +700,7 @@
          */
 
         Filter: function(array, callback) {
-            if(F.isArray(array) && F.isFunction(callback)) {
+            if(F.Compare(F.isArray(array), F.isFunction(callback), '=', true)) {
                 var arr = [];
 
                 F.forEach(array, function(item) {

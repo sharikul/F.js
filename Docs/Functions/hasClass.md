@@ -1,21 +1,21 @@
-# `addClass`
-To add classes to elements flexibly. _Defined on line [541](../../F.js#L541)_.
+# `hasClass`
+To check the existence of a class on an element. _Defined on line [562](../../F.js#L562)_.
 
 ## Use
 ```
-addClass(_class, element);
+hasClass(_class, element);
 ```
 
 ### Parameters
-* `_class` (_string_ or _array_): The class(es) to add.
+* `_class` (_string_ or _array_): The class(es) to check for.
 * `element` (_string_ or _array_): The element(s) to target.
 
 ### Returns
-* `Array`
+* `Boolean`
 
 ## Example
 ```javascript
-Expose('addClass');
+Expose(['addClass', 'hasClass']);
 ```
 
 ```html
@@ -39,4 +39,10 @@ addClass('sansserif', ['div', '#paragraph']);
 
 // Add many classes to both elements
 addClass(['sansserif', 'big'], ['div', '#paragraph']);
+
+// Check if p#paragraph has the class .big
+hasClass('big', '#paragraph'); // true
+
+// Check if both elements have the class .sansserif
+hasClass('sansserif', ['div', '#paragraph']); // true
 ```
