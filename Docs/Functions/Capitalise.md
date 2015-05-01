@@ -1,9 +1,9 @@
-# `Capitalize`
+# `Capitalise`
 To capitalise each word in the string provided. _Defined on line [363](../../F.js#L363)_.
 
 ## Use
 ```
-Capitalize(string);
+Capitalise(string);
 ```
 
 ### Parameters
@@ -15,7 +15,7 @@ Capitalize(string);
 
 ## Example
 ```javascript
-Expose('Capitalize');
+Expose('Capitalise');
 
-Capitalize('my name is sharikul'); // returns "My Name Is Sharikul"
+Capitalise('my name is sharikul'); // returns "My Name Is Sharikul"
 ```
