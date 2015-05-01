@@ -1,5 +1,5 @@
 # `addStyle`
-To allow the CSS styling of elements in a flexible manner. _Defined on line [519](../../F.js#L519)_.
+To allow the CSS styling of elements flexibly. _Defined on line [519](../../F.js#L519)_.
 
 ## Use
 ```
