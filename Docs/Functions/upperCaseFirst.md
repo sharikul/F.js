@@ -1,5 +1,5 @@
 # `upperCaseFirst`
-To capitalise the first letter in the string provided. _Defined on line [344](../../F.js#344)_.
+To capitalise the first letter in the string provided. _Defined on line [344](../../F.js#L344)_.
 
 ## Use
 ```
