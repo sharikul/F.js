@@ -331,7 +331,7 @@
         },
 
         /**
-         * Capitalize's the first letter of the word provided.
+         * Capitalises the first letter of the word provided.
          * @return string|error
          * 
          * Usage:
@@ -350,17 +350,17 @@
         },
 
         /**
-         * Capitalize's words in the provided string.
+         * Capitalises words in the provided string.
          * @return string|error
          *
          * Usage:
-         *     Capitalize('hello, my name is sharikul')
+         *     Capitalise('hello, my name is sharikul')
          *
          *  Returns:
          *      'Hello, My Name Is Sharikul'
          */
 
-        Capitalize: function(string) {
+        Capitalise: function(string) {
             if(F.isString(string)) {
                 var sentence = '',
                     words = string.match(/\s/g) ? string.split(/\s+/g): string;
@@ -534,7 +534,7 @@
         },
 
         /**
-         * Add's classes to the elements specified.
+         * Adds classes to the elements specified.
          * @return array
          */
 
@@ -555,7 +555,7 @@
         },
 
         /**
-         * Determine's whether elements specified contain the class(es) specified.
+         * Determines whether elements specified contain the class(es) specified.
          * @return boolean
          */
 
